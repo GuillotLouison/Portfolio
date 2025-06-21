@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SAE ACP</title>
+  <title>Automatisation Suivi</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
   <style>
     body {
-      background-color: #0d1117;
-      color: #b1b1b1;
+      background-color: #0d1117; /* Bleu noir */
+      color: #b1b1b1; /* Texte normal gris moyen */
     }
 
     h1, h2 {
-      color: #ffffff;
+      color: #ffffff; /* Titres principaux blancs */
     }
 
     h3, h4 {
-      color: #c9d1d9;
+      color: #c9d1d9; /* Sous-titres gris clair */
     }
 
     a {
-      color: #58a6ff;
+      color: #58a6ff; /* Liens bleu clair */
     }
 
     nav, footer, main {
@@ -37,7 +37,7 @@
     }
 
     figure figcaption {
-      color: #888;
+      color: #888; /* Légende un peu plus discrète */
     }
   </style>
 </head>
@@ -53,34 +53,30 @@
   <main class="container">
     <section>
       <hgroup>
-        <h2>Analyse multivariée : ACP sur la criminalité</h2>
-        <h3>Projet de SAE avec R Shiny</h3>
+        <h2>Projet de stage : Automatisation suivi pour la plateforme ACDC</h2>
+        <h3>Automatisation du suivi d’activité d'un service</h3>
       </hgroup>
-      <p>J’ai conceptualisé un outil R Shiny disponible à l’adresse suivante : <a href="https://louisonguillot.shinyapps.io/apli/" target="_blank">https://louisonguillot.shinyapps.io/apli/</a>.</p>
-      <p>Ce tableau de bord permet d’explorer les données de criminalité aux États-Unis :</p>
+      <p>J’ai conçu un outil de suivi totalement automatisé durant mon stage. Les étapes principales ont été :</p>
       <ul>
-        <li>Analyse descriptive des variables</li>
-        <li>Analyse bivariée</li>
-        <li>Carte des États américains avec les données</li>
-        <li>Analyse de corrélation</li>
-        <li>Analyse en Composantes Principales (ACP)</li>
+        <li>Création des tables sur SAS</li>
+        <li>Envoi des tables par mail via un script SAS</li>
+        <li>Mise à jour des données via Google Apps Script en cliquant sur un onglet dans Google Sheet</li>
       </ul>
-      <p>Dans l’onglet ACP, on peut visualiser :</p>
+      <p>Le suivi contient différentes feuilles :</p>
       <ul>
-        <li>Graphique des individus et variables</li>
-        <li>Coordonnées, cos² et contributions des individus</li>
-        <li>Valeurs propres des dimensions</li>
-        <li>V-test des variables supplémentaires</li>
-        <li>Coordonnées et contributions des variables actives</li>
+        <li>Suivi du gestionnaire, de l'équipe, et du pôle (extrait ci-dessous)</li>
+        <li>Suivi sur 12 mois permettant de voir l’évolution des performances</li>
+        <li>Feuilles spécifiques au pôle avec des indicateurs clés comme la qualité de service ou le stock CRM</li>
       </ul>
-      <p>Compétences développées :</p>
+      <p>Ce projet s’inscrit dans le niveau 2 des compétences du BUT Science des Données :</p>
       <ul>
-        <li><strong>Analyser :</strong> mise en œuvre d’une analyse exploratoire complète</li>
-        <li><strong>Valoriser :</strong> restitution et argumentation des résultats lors d’une présentation orale</li>
+        <li><strong>Traiter :</strong> "Automatiser le traitement de données"</li>
+        <li><strong>Valoriser :</strong> "Restituer des résultats"</li>
       </ul>
+      <p>J’ai pu conceptualiser un outil complet pour le suivi du service en manipulant de nouveaux outils comme Google Apps Script, Google Sheet, et des fonctionnalités avancées de SAS non vues en cours.</p>
       <figure>
-        <img src="Capture.PNG" alt="Graphique ACP">
-        <figcaption>Représentation des États selon l’ACP</figcaption>
+        <img src="suivi.png" alt="Suivi ACDC">
+        <figcaption>Extrait de la plateforme de suivi automatisé ACDC</figcaption>
       </figure>
     </section>
   </main>
