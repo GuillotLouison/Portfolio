@@ -3,36 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Louison Guillot | Portfolio</title>
+  <title>Louison Guillot | Data Analyst</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
   <style>
-    body {
-      background-color: #0d1117;
-      color: #b1b1b1;
+    body { background-color: #0d1117; color: #b1b1b1; }
+    h1, h2, h3 { color: #ffffff; }
+    h4, h5 { color: #c9d1d9; }
+    a { color: #58a6ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    nav, footer, main { background-color: transparent; }
+    nav strong { color: #ffffff; }
+    
+    .hero-section {
+        text-align: center;
+        padding: 60px 20px;
+        border-bottom: 1px solid #30363d;
+        margin-bottom: 40px;
     }
-
-    h1, h2 {
-      color: #ffffff;
+    
+    .project-card {
+        background-color: #161b22;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid #30363d;
+        height: 100%;
+        transition: transform 0.2s, border-color 0.2s;
     }
-
-    h3, h4 {
-      color: #c9d1d9;
+    .project-card:hover {
+        transform: translateY(-5px);
+        border-color: #58a6ff;
     }
-
-    a {
-      color: #58a6ff;
-    }
-
-    nav, footer, main {
-      background-color: transparent;
-    }
-
-    nav strong {
-      color: #ffffff;
-    }
-
-    small {
-      color: #888;
+    .project-title { color: #58a6ff; font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; display: block;}
+    .skill-tag {
+      background-color: #21262d; color: #79c0ff; padding: 2px 8px;
+      border-radius: 12px; font-size: 0.75rem; border: 1px solid #30363d;
+      margin-right: 5px; display: inline-block; margin-top: 10px;
     }
   </style>
 </head>
@@ -40,25 +45,25 @@
   <nav class="container-fluid">
     <ul><li><strong>Louison Guillot</strong></li></ul>
     <ul>
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="stage-acdc.html">Automatisation Suivi</a></li>
-      <li><a href="sae-acp.html">SAE exploration criminalité USA</a></li>
-      <li><a href="projet-scoring.html">Projet scoring</a></li>
+      <li><a href="index.html" aria-current="page">Accueil</a></li>
+      <li><a href="stage-acdc.html">Automatisation</a></li>
+      <li><a href="sae-acp.html">Data Viz</a></li>
+      <li><a href="projet-scoring.html">Machine Learning</a></li>
+      <li><a href="objectifs.html">Objectifs</a></li>
     </ul>
   </nav>
+
   <main class="container">
-    <section>
-      <hgroup>
-        <h1>Bienvenue sur mon portfolio</h1>
-      </hgroup>
-      <p>Ce site a pour objectif de présenter les projets réalisés en cours ou en stage en lien avec les compétences développées dans le BUT Science des Données.</p>
-    </section>
-  </main>
-  <footer class="container">
-    <small>
-      <a>Contact :</a>
-      <a>guillotlouison@gmail.com</a>
-    </small>
-  </footer>
-</body>
-</html>
+    <div class="hero-section">
+      <h1>Data Analyst</h1>
+      <h3>Transformer la donnée brute en leviers de décision</h3>
+      <p style="max-width: 700px; margin: 0 auto; color: #8b949e;">
+        Spécialisé dans l'automatisation de processus, la visualisation de données et la modélisation statistique.
+      </p>
+    </div>
+
+    <h3 style="margin-bottom: 30px;">Projets Récents</h3>
+    
+    <div class="grid">
+      <article class="project-card">
+        <a href="stage-acdc.
