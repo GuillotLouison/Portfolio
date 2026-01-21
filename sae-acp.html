@@ -3,88 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SAE ACP</title>
+  <title>Analyse R Shiny | Louison Guillot</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
   <style>
-    body {
-      background-color: #0d1117; /* Bleu noir */
-      color: #b1b1b1; /* Texte normal gris moyen */
-    }
+    body { background-color: #0d1117; color: #b1b1b1; }
+    h1, h2 { color: #ffffff; }
+    h3, h4 { color: #c9d1d9; }
+    a { color: #58a6ff; }
+    nav, footer, main { background-color: transparent; }
+    nav strong { color: #ffffff; }
+    img { max-width: 100%; height: auto; border-radius: 4px; border: 1px solid #30363d; }
+    figure figcaption { color: #8b949e; font-size: 0.9em; margin-top: 10px; text-align: center; }
 
-    h1, h2 {
-      color: #ffffff; /* Titres principaux blancs */
+    .skill-tag {
+      background-color: #21262d; color: #58a6ff; padding: 4px 10px;
+      border-radius: 20px; font-size: 0.8rem; border: 1px solid #30363d;
+      margin-right: 5px;
     }
-
-    h3, h4 {
-      color: #c9d1d9; /* Sous-titres gris clair */
-    }
-
-    a {
-      color: #58a6ff; /* Liens bleu clair */
-    }
-
-    nav, footer, main {
-      background-color: transparent;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    figure figcaption {
-      color: #888; /* Légende un peu plus discrète */
-    }
+    
+    .feature-list li { margin-bottom: 10px; }
   </style>
 </head>
 <body>
   <nav class="container-fluid">
-    <ul><li><strong style="color: white;">Louison Guillot</strong></li></ul>
+    <ul><li><strong>Louison Guillot</strong></li></ul>
     <ul>
       <li><a href="index.html">Accueil</a></li>
-      <li><a href="stage-acdc.html">Automatisation Suivi</a></li>
-      <li><a href="sae-acp.html">SAE exploration criminalité USA</a></li>
-      <li><a href="objectifs.html">Objectifs futurs</a></li>
-
+      <li><a href="stage-acdc.html">Automatisation</a></li>
+      <li><a href="sae-acp.html" aria-current="page">Data Viz</a></li>
+      <li><a href="projet-scoring.html">Machine Learning</a></li>
+      <li><a href="objectifs.html">Objectifs</a></li>
     </ul>
   </nav>
+
   <main class="container">
     <section>
       <hgroup>
-        <h2>Analyse multivariée : ACP sur la criminalité</h2>
-        <h3>Projet de SAE avec R Shiny</h3>
+        <h2>Exploration de Données & Data Visualisation</h2>
+        <h3>Application R Shiny : Analyse de la criminalité aux USA</h3>
       </hgroup>
-      <p>J’ai conceptualisé un outil R Shiny disponible à l’adresse suivante : <a href="https://louisonguillot.shinyapps.io/apli/" target="_blank">https://louisonguillot.shinyapps.io/apli/</a>.</p>
-      <p>Ce tableau de bord permet d’explorer les données de criminalité aux États-Unis :</p>
-      <ul>
-        <li>Analyse descriptive des variables</li>
-        <li>Analyse bivariée</li>
-        <li>Carte des États américains avec les données</li>
-        <li>Analyse de corrélation</li>
-        <li>Analyse en Composantes Principales (ACP)</li>
+
+      <p style="margin-bottom: 30px;">
+        <span class="skill-tag">Langage R</span>
+        <span class="skill-tag">Shiny App</span>
+        <span class="skill-tag">Analyse Multivariée (ACP)</span>
+        <span class="skill-tag">Cartographie</span>
+      </p>
+
+      <h4>Objectif du Projet</h4>
+      <p>
+        Développement d'une interface web interactive pour rendre accessible l'exploration d'un jeu de données complexe (statistiques criminelles par État américain). L'outil permet à un utilisateur non-expert de visualiser les corrélations et typologies d'États.
+      </p>
+      
+      <p>
+        <strong>🔗 Accès à l'application live :</strong> <a href="https://louisonguillot.shinyapps.io/apli/" target="_blank">Voir la démo interactive</a>
+      </p>
+
+      <h4>Fonctionnalités Clés</h4>
+      <ul class="feature-list">
+        <li><strong>Analyse Descriptive Dynamique :</strong> Visualisation univariée et bivariée avec filtres interactifs.</li>
+        <li><strong>Cartographie Intelligente :</strong> Projection spatiale des taux de criminalité par État.</li>
+        <li><strong>Module Statistique Avancé (ACP) :</strong>
+            <ul>
+                <li>Projection des individus (États) et variables sur les axes factoriels.</li>
+                <li>Calcul automatique des contributions et Cos² pour valider l'interprétation.</li>
+                <li>Clustering visuel des zones à risque similaire.</li>
+            </ul>
+        </li>
       </ul>
-      <p>Dans l’onglet ACP, on peut visualiser :</p>
-      <ul>
-        <li>Graphique des individus et variables</li>
-        <li>Coordonnées, cos² et contributions des individus</li>
-        <li>Valeurs propres des dimensions</li>
-        <li>V-test des variables supplémentaires</li>
-        <li>Coordonnées et contributions des variables actives</li>
-      </ul>
-      <p>Compétences développées :</p>
-      <ul>
-        <li><strong>Analyser :</strong> mise en œuvre d’une analyse exploratoire complète</li>
-        <li><strong>Valoriser :</strong> restitution et argumentation des résultats lors d’une présentation orale</li>
-      </ul>
+
       <figure>
-        <img src="Capture.PNG" alt="Graphique ACP">
-        <figcaption>Représentation des États selon l’ACP</figcaption>
+        <img src="Capture.PNG" alt="Interface R Shiny ACP">
+        <figcaption>Visualisation de l'Analyse en Composantes Principales (Plan factoriel 1&2)</figcaption>
       </figure>
+
+      <h4>Compétence Mise en Avant</h4>
+      <p>
+        Ce projet démontre la capacité à construire un <strong>outil de Business Intelligence complet</strong> : du traitement statistique en back-end (R) jusqu'à la restitution visuelle (Front-end Shiny) pour faciliter la prise de décision.
+      </p>
+
     </section>
   </main>
+
   <footer class="container">
-    <a>Contact :</a>
-    <a>guillotlouison@gmail.com</a>
+    <small>Contact : <a href="mailto:guillotlouison@gmail.com">guillotlouison@gmail.com</a></small>
   </footer>
 </body>
 </html>
