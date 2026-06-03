@@ -3,67 +3,110 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Louison Guillot | Data Analyst</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-  <style>
-    body { background-color: #0d1117; color: #b1b1b1; }
-    h1, h2, h3 { color: #ffffff; }
-    h4, h5 { color: #c9d1d9; }
-    a { color: #58a6ff; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    nav, footer, main { background-color: transparent; }
-    nav strong { color: #ffffff; }
-    
-    .hero-section {
-        text-align: center;
-        padding: 60px 20px;
-        border-bottom: 1px solid #30363d;
-        margin-bottom: 40px;
-    }
-    
-    .project-card {
-        background-color: #161b22;
-        padding: 20px;
-        border-radius: 8px;
-        border: 1px solid #30363d;
-        height: 100%;
-        transition: transform 0.2s, border-color 0.2s;
-    }
-    .project-card:hover {
-        transform: translateY(-5px);
-        border-color: #58a6ff;
-    }
-    .project-title { color: #58a6ff; font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; display: block;}
-    .skill-tag {
-      background-color: #21262d; color: #79c0ff; padding: 2px 8px;
-      border-radius: 12px; font-size: 0.75rem; border: 1px solid #30363d;
-      margin-right: 5px; display: inline-block; margin-top: 10px;
-    }
-  </style>
+  <title>Louison Guillot · Data Analyst</title>
+  <meta name="description" content="Portfolio de Louison Guillot — étudiant en BUT Science des Données. Automatisation, data visualisation et machine learning.">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav class="container-fluid">
-    <ul><li><strong>Louison Guillot</strong></li></ul>
-    <ul>
-      <li><a href="index.html" aria-current="page">Accueil</a></li>
-      <li><a href="stage-acdc.html">Automatisation</a></li>
-      <li><a href="sae-acp.html">Data Viz</a></li>
-      <li><a href="projet-scoring.html">Machine Learning</a></li>
-      <li><a href="objectifs.html">Objectifs</a></li>
-    </ul>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand">Louison <span>Guillot</span></div>
+      <div class="nav-links">
+        <a href="index.html" class="active">Accueil</a>
+        <a href="stage-acdc.html">Automatisation</a>
+        <a href="sae-acp.html">Data Viz</a>
+        <a href="projet-scoring.html">Machine Learning</a>
+        <a href="objectifs.html">Objectifs</a>
+      </div>
+    </div>
   </nav>
 
-  <main class="container">
-    <div class="hero-section">
-      <h1>Data Analyst</h1>
-      <h3>Transformer la donnée brute en leviers de décision</h3>
-      <p style="max-width: 700px; margin: 0 auto; color: #8b949e;">
-        Spécialisé dans l'automatisation de processus, la visualisation de données et la modélisation statistique.
-      </p>
+  <header class="hero wrap">
+    <span class="eyebrow reveal">BUT Science des Données</span>
+    <h1 class="reveal">Étudiant <span class="accent">Data&nbsp;Analyst</span></h1>
+    <p class="lead reveal">
+      Je transforme la donnée brute en leviers de décision : automatisation de processus,
+      visualisation interactive et modélisation statistique.
+    </p>
+    <div class="hero-tags reveal">
+      <a href="#projets" class="btn btn-primary">Voir mes projets →</a>
+      <a href="objectifs.html" class="btn btn-ghost">Mon profil</a>
     </div>
+  </header>
 
-    <h3 style="margin-bottom: 30px;">Projets Récents</h3>
-    
-    <div class="grid">
-      <article class="project-card">
-        <a href="stage-acdc.
+  <main>
+    <section class="section wrap" id="projets">
+      <div class="section-label reveal">Sélection</div>
+      <h2 class="reveal">Projets récents</h2>
+      <p class="section-sub reveal">
+        Trois projets représentatifs de mon parcours, de l'ingénierie de données
+        jusqu'à la restitution métier.
+      </p>
+
+      <div class="proj-grid">
+        <a class="card reveal" href="stage-acdc.html">
+          <span class="num">01 / Stage</span>
+          <h3>Automatisation de reporting</h3>
+          <div class="role">Pipeline ETL · SAS → Google Workspace</div>
+          <p>Architecture « zéro clic » pour la mise à jour autonome des tableaux de bord d'activité de la plateforme ACDC.</p>
+          <div>
+            <span class="tag">SAS</span><span class="tag">Apps Script</span><span class="tag">SQL</span>
+          </div>
+          <p style="margin-top:16px"><span class="arrow">Découvrir le projet →</span></p>
+        </a>
+
+        <a class="card reveal" href="sae-acp.html">
+          <span class="num">02 / SAÉ</span>
+          <h3>Exploration & Data Viz</h3>
+          <div class="role">Application R Shiny · Analyse multivariée</div>
+          <p>Une interface web interactive pour explorer la criminalité aux USA : cartographie, ACP et clustering visuel.</p>
+          <div>
+            <span class="tag">R</span><span class="tag">Shiny</span><span class="tag">ACP</span>
+          </div>
+          <p style="margin-top:16px"><span class="arrow">Découvrir le projet →</span></p>
+        </a>
+
+        <a class="card reveal" href="projet-scoring.html">
+          <span class="num">03 / Projet</span>
+          <h3>Scoring & prédiction d'attrition</h3>
+          <div class="role">Machine Learning · Python / Scikit-Learn</div>
+          <p>Un modèle pour anticiper le départ des clients d'une banque, traduit en score de risque actionnable.</p>
+          <div>
+            <span class="tag">Python</span><span class="tag">Scikit-Learn</span><span class="tag">Pandas</span>
+          </div>
+          <p style="margin-top:16px"><span class="arrow">Découvrir le projet →</span></p>
+        </a>
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <div class="section-label reveal">Ce que je fais</div>
+      <h2 class="reveal">Trois facettes complémentaires</h2>
+      <div class="proj-grid" style="margin-top:32px">
+        <div class="card reveal" style="cursor:default">
+          <h3 style="font-size:1.2rem">⚙️ Automatiser</h3>
+          <p>Concevoir des pipelines fiables qui suppriment les tâches manuelles : extraction SQL, traitement SAS, orchestration cloud.</p>
+        </div>
+        <div class="card reveal" style="cursor:default">
+          <h3 style="font-size:1.2rem">📊 Visualiser</h3>
+          <p>Rendre la donnée lisible et explorable pour des utilisateurs non-experts, du back-end statistique au front-end interactif.</p>
+        </div>
+        <div class="card reveal" style="cursor:default">
+          <h3 style="font-size:1.2rem">🧠 Modéliser</h3>
+          <p>Sélectionner, entraîner et interpréter des modèles statistiques, puis les traduire en décisions métier concrètes.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <small>© 2025 Louison Guillot · BUT Science des Données</small>
+      <small>Contact : <a href="mailto:guillotlouison@gmail.com">guillotlouison@gmail.com</a></small>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
