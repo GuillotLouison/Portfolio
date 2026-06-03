@@ -3,68 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Automatisation Reporting | Louison Guillot</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-  <style>
-    body { background-color: #0d1117; color: #b1b1b1; }
-    h1, h2 { color: #ffffff; }
-    h3, h4 { color: #c9d1d9; }
-    a { color: #58a6ff; }
-    nav, footer, main { background-color: transparent; }
-    nav strong { color: #ffffff; }
-    img { max-width: 100%; height: auto; border-radius: 4px; border: 1px solid #30363d; }
-    figure figcaption { color: #8b949e; font-size: 0.9em; margin-top: 10px; text-align: center; }
-    
-    .skill-tag {
-      background-color: #21262d; color: #58a6ff; padding: 4px 10px;
-      border-radius: 20px; font-size: 0.8rem; border: 1px solid #30363d;
-      margin-right: 5px;
-    }
-    
-    .process-step {
-        border-left: 2px solid #58a6ff;
-        padding-left: 20px;
-        margin-bottom: 20px;
-    }
-  </style>
+  <title>Automatisation Reporting · Louison Guillot</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav class="container-fluid">
-    <ul><li><strong>Louison Guillot</strong></li></ul>
-    <ul>
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="stage-acdc.html" aria-current="page">Automatisation</a></li>
-      <li><a href="sae-acp.html">Data Viz</a></li>
-      <li><a href="projet-scoring.html">Machine Learning</a></li>
-      <li><a href="objectifs.html">Objectifs</a></li>
-    </ul>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand">Louison <span>Guillot</span></div>
+      <div class="nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="stage-acdc.html" class="active">Automatisation</a>
+        <a href="sae-acp.html">Data Viz</a>
+        <a href="projet-scoring.html">Machine Learning</a>
+        <a href="objectifs.html">Objectifs</a>
+      </div>
+    </div>
   </nav>
 
-  <main class="container">
-    <section>
-      <hgroup>
-        <h2>Automatisation de Reporting & Flux de Données</h2>
-        <h3>Optimisation du suivi d'activité pour la plateforme ACDC</h3>
-      </hgroup>
-      
-      <p style="margin-bottom: 30px;">
-        <span class="skill-tag">SAS</span>
-        <span class="skill-tag">Google Apps Script</span>
-        <span class="skill-tag">SQL</span>
-        <span class="skill-tag">Optimisation de Processus</span>
-      </p>
+  <header class="proj-hero wrap">
+    <span class="kicker reveal">01 — Stage · Automatisation</span>
+    <h1 class="reveal">Automatisation de reporting<br>& flux de données</h1>
+    <p class="sub reveal">Optimisation du suivi d'activité pour la plateforme ACDC : une architecture « zéro clic » reliant le mainframe et le cloud.</p>
+    <div class="tags reveal">
+      <span class="tag">SAS</span><span class="tag">Google Apps Script</span><span class="tag">SQL</span><span class="tag">ETL</span><span class="tag">Optimisation de processus</span>
+    </div>
+  </header>
 
-      <h4>Enjeu Technique & Business</h4>
+  <main class="wrap">
+
+    <section class="block reveal">
+      <h4>Enjeu technique & métier</h4>
       <p>
-        Le suivi manuel des indicateurs de performance (KPIs) de l'équipe et des gestionnaires était chronophage et source d'erreurs potentielles. 
-        L'objectif était de concevoir une architecture "Zéro Clic" permettant une mise à jour autonome et fiable des tableaux de bord.
+        Le suivi manuel des indicateurs de performance (KPIs) de l'équipe et des gestionnaires était
+        <strong>chronophage et source d'erreurs</strong>. L'objectif : concevoir une architecture autonome
+        permettant une mise à jour fiable des tableaux de bord, sans intervention humaine.
       </p>
+    </section>
 
-      <h4>Architecture de la Solution</h4>
-      <p>J'ai développé un pipeline ETL (Extract, Transform, Load) complet interconnectant l'environnement Mainframe (SAS) et le Cloud (Google Workspace) :</p>
-      
-      <div class="process-step">
-        <strong>1. Extraction & Traitement (SAS)</strong><br>
-        <small>Requêtage SQL complexe et agrégation des données brutes pour calculer les KPIs (Qualité de service, Stock CRM).</small>
+    <section class="block reveal">
+      <h4>Architecture de la solution</h4>
+      <p>J'ai développé un pipeline <strong>ETL (Extract, Transform, Load)</strong> complet interconnectant l'environnement mainframe (SAS) et le cloud (Google Workspace) :</p>
+      <div class="steps" style="margin-top:24px">
+        <div class="step">
+          <span class="st">1 · Extraction & traitement (SAS)</span>
+          <small>Requêtage SQL complexe et agrégation des données brutes pour calculer les KPIs : qualité de service, stock CRM, volumétrie d'appels et de plis traités.</small>
+        </div>
+        <div class="step">
+          <span class="st">2 · Transformation & structuration</span>
+          <small>Nettoyage, calcul des ratios métier (DMC, ICP, consultation / appels) et mise en forme des indicateurs par pôle, équipe et gestionnaire.</small>
+        </div>
+        <div class="step">
+          <span class="st">3 · Chargement automatisé (Google Apps Script)</span>
+          <small>Injection planifiée des résultats vers Google Workspace et rafraîchissement automatique des tableaux de bord — l'objectif « zéro clic ».</small>
+        </div>
+        <div class="step">
+          <span class="st">4 · Restitution</span>
+          <small>Tableaux de bord lisibles, mis à jour quotidiennement, exploitables directement par les managers.</small>
+        </div>
       </div>
-      <div class="process
+    </section>
+
+    <section class="block reveal">
+      <h4>Résultat</h4>
+      <figure>
+        <img src="suivi.png" alt="Tableau de bord de suivi d'activité ACDC">
+        <figcaption>Tableau de bord de suivi d'activité — indicateurs Téléphone et CRM par pôle, équipe et gestionnaire.</figcaption>
+      </figure>
+    </section>
+
+    <section class="block reveal">
+      <div class="callout">
+        <p><strong>Compétence mise en avant —</strong> capacité à industrialiser un processus de bout en bout : du requêtage de la source jusqu'à la restitution automatisée, en supprimant la charge manuelle et le risque d'erreur.</p>
+      </div>
+    </section>
+
+    <a href="index.html" class="backlink reveal">← Retour au portfolio</a>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <small>© 2025 Louison Guillot · BUT Science des Données</small>
+      <small>Contact : <a href="mailto:guillotlouison@gmail.com">guillotlouison@gmail.com</a></small>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
