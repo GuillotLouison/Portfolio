@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Machine Learning avancé · Louison Guillot</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand">Louison <span>Guillot</span></div>
+      <div class="nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="stage-acdc.html">Automatisation</a>
+        <a href="sae-acp.html">Data Viz</a>
+        <a href="projet-ozone.html">Modélisation</a>
+        <a href="projet-scoring.html">Machine Learning</a>
+        <a href="projet-boosting.html" class="active">ML avancé</a>
+        <a href="objectifs.html">Objectifs</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="proj-hero wrap">
+    <span class="kicker reveal">Projet · Machine Learning avancé</span>
+    <h1 class="reveal">Le boosting de A à Z<br>sur la qualité des vins</h1>
+    <p class="sub reveal">Un projet pour maîtriser le Gradient Boosting de bout en bout : du sur-apprentissage du modèle brut au modèle calibré et élagué.</p>
+    <div class="tags reveal">
+      <span class="tag">Python</span><span class="tag">Scikit-Learn</span><span class="tag">Gradient Boosting</span><span class="tag">Tuning d'hyperparamètres</span><span class="tag">Validation croisée</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="block reveal">
+      <h4>L'intention</h4>
+      <p>
+        À la suite de mes cours sur les méthodes d'agrégation (bagging, forêts aléatoires, boosting), j'ai voulu
+        vérifier que je savais <strong>dérouler un Gradient Boosting proprement, sans filet</strong> : partir d'un
+        modèle naïf, diagnostiquer son sur-apprentissage, puis régler les hyperparamètres de façon raisonnée jusqu'à
+        un modèle final justifié. Le terrain : la qualité de vins rouges portugais « Vinho Verde » (~1 140 vins,
+        11 caractéristiques physico-chimiques, une note de 3 à 8 à prédire).
+      </p>
+      <div class="callout">
+        <p>L'objectif n'était pas la performance record — le jeu est difficile et très déséquilibré — mais la
+        <strong>maîtrise de la démarche</strong> : chaque choix d'hyperparamètre devait être motivé, pas subi.</p>
+      </div>
+    </section>
+
+    <section class="block reveal">
+      <h4>Le piège de départ : un modèle volontairement trop gros</h4>
+      <p>
+        J'ai d'abord entraîné un boosting de 2000 arbres avec les réglages par défaut, juste pour <strong>voir le
+        sur-apprentissage en action</strong>. Le verdict est sans appel : précision parfaite sur l'entraînement,
+        médiocre en validation.
+      </p>
+      <div class="stats">
+        <div class="stat"><span class="n">100%</span><span class="l">Accuracy train (gb1)</span></div>
+        <div class="stat"><span class="n">60,3%</span><span class="l">Accuracy validation (gb1)</span></div>
+      </div>
+      <p>
+        En suivant l'erreur <strong>arbre par arbre</strong> (via <code>staged_predict</code>), on voit l'erreur de
+        validation se stabiliser puis <strong>remonter</strong> : ajouter des arbres finit par dégrader le modèle.
+        C'est le signal qu'il faut régulariser.
+      </p>
+    </section>
+
+    <section class="block reveal">
+      <h4>Le cœur du projet : un réglage séquentiel et raisonné</h4>
+      <p>
+        Plutôt qu'une grille géante sur tous les paramètres à la fois — coûteuse et illisible — j'ai réglé les
+        hyperparamètres <strong>dans l'ordre, du plus structurant au plus fin</strong> :
+      </p>
+      <div class="steps" style="margin-top:24px">
+        <div class="step">
+          <span class="st">1 · learning_rate × n_estimators</span>
+          <small>Ces deux paramètres se compensent : un pas plus petit demande plus d'arbres. En traçant l'erreur de validation pour 0,01 / 0,05 / 0,1, on retrouve ce comportement (0,01 → ~300 arbres, 0,1 → ~30). J'ai retenu le pas le plus prudent (0,01), gage de stabilité.</small>
+        </div>
+        <div class="step">
+          <span class="st">2 · max_depth × subsample par validation croisée</span>
+          <small>RepeatedKFold pour ne pas dépendre d'un seul découpage. Le subsample = 0,8 ressort gagnant : n'utiliser que 80 % du train par arbre introduit un aléa qui régularise (stochastic gradient boosting). Combinaison retenue : max_depth = 5, subsample = 0,8.</small>
+        </div>
+        <div class="step">
+          <span class="st">3 · Réajustement final du nombre d'arbres</span>
+          <small>Avec la profondeur et le subsample fixés, recherche d'un dernier optimum : ~137 arbres. La validation passe d'environ 0,60 (modèle naïf) à ~0,68.</small>
+        </div>
+        <div class="step">
+          <span class="st">4 · Évaluation honnête sur le test</span>
+          <small>L'échantillon de test n'est sorti qu'à la toute fin, jamais utilisé pour les réglages — la seule façon de ne pas se mentir sur la vraie performance.</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="block reveal">
+      <h4>Lecture critique des résultats</h4>
+      <p>
+        Le modèle calibré prédit très bien les notes centrales (5 et 6, les classes pleines) mais échoue sur les
+        extrêmes (3, 4, 8) — il n'a tout simplement pas assez d'exemples pour les apprendre. La matrice de confusion
+        rend ce diagnostic immédiat. <strong>La vraie limite est dans les données, pas dans le modèle.</strong>
+      </p>
+    </section>
+
+    <section class="block reveal">
+      <h4>Quelles variables comptent vraiment ?</h4>
+      <p>
+        J'ai croisé deux mesures d'importance qui ne disent pas la même chose : la <strong>MDI</strong> (réduction
+        d'impureté, calculée sur le train) et la <strong>MDA</strong> (perte de performance par permutation, mesurée
+        sur le test — plus honnête). Les deux convergent : <strong>l'alcool domine très largement</strong>, suivi des
+        sulfates et de l'acidité volatile — cohérent avec l'œnologie. À l'inverse, le sucre résiduel, le pH ou la
+        densité ne pèsent quasiment rien.
+      </p>
+    </section>
+
+    <section class="block reveal">
+      <div class="seg">
+        <h4 style="color:var(--ink)">Le test de parcimonie</h4>
+        <p>
+          Dernier volet : réentraîner <strong>tout le pipeline</strong> (re-calibrage complet) en ne gardant que les
+          6 variables utiles, puis comparer au modèle complet sur le même test.
+        </p>
+        <div class="stats" style="margin-top:8px">
+          <div class="stat"><span class="n">59,0%</span><span class="l">Test — modèle complet (11 var.)</span></div>
+          <div class="stat"><span class="n">61,1%</span><span class="l">Test — modèle réduit (6 var.)</span></div>
+        </div>
+        <p style="margin-top:14px">
+          Le modèle réduit fait <strong>aussi bien, voire légèrement mieux</strong>, avec presque deux fois moins de
+          variables : plus simple, plus rapide, plus lisible, pour une performance équivalente. Exactement le compromis
+          qu'on recherche.
+        </p>
+      </div>
+    </section>
+
+    <section class="block reveal">
+      <h4>Ce que j'en retire</h4>
+      <ul>
+        <li>Le boosting <strong>sur-apprend vite</strong> sans régularisation ; le suivi arbre par arbre est l'outil le plus parlant pour le voir et choisir le bon nombre d'arbres.</li>
+        <li><strong>L'ordre du réglage compte</strong> : un tuning séquentiel est plus interprétable et plus rapide qu'une grille aveugle.</li>
+        <li>La parcimonie paie : <strong>couper les variables inutiles ne coûte rien</strong> en performance.</li>
+        <li>Face au déséquilibre, plusieurs leviers existent (rééquilibrage type <strong>SMOTE</strong> sur le seul train, pondération des classes, ou regroupement des notes) — le plus robuste ici serait de regrouper en « mauvais / moyen / bon ».</li>
+      </ul>
+    </section>
+
+    <a href="index.html" class="backlink reveal">← Retour au portfolio</a>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <small>© 2026 Louison Guillot · BUT Science des Données</small>
+      <small>Réalisé en Python (Scikit-Learn, Pandas, Matplotlib).</small>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

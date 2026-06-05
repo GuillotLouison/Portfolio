@@ -15,16 +15,18 @@
         <a href="index.html">Accueil</a>
         <a href="stage-acdc.html">Automatisation</a>
         <a href="sae-acp.html" class="active">Data Viz</a>
+        <a href="projet-ozone.html">Modélisation</a>
         <a href="projet-scoring.html">Machine Learning</a>
+        <a href="projet-boosting.html">ML avancé</a>
         <a href="objectifs.html">Objectifs</a>
       </div>
     </div>
   </nav>
 
   <header class="proj-hero wrap">
-    <span class="kicker reveal">02 — SAÉ · Data Visualisation</span>
+    <span class="kicker reveal">Projet · Data Visualisation</span>
     <h1 class="reveal">Exploration de données<br>& application R Shiny</h1>
-    <p class="sub reveal">Une interface web interactive pour rendre accessible l'analyse de la criminalité par État aux États-Unis.</p>
+    <p class="sub reveal">Une application R Shiny pour visualiser et comprendre notre jeu de données : la criminalité par État aux États-Unis.</p>
     <div class="tags reveal">
       <span class="tag">Langage R</span><span class="tag">Shiny</span><span class="tag">ACP</span><span class="tag">Cartographie</span><span class="tag">Analyse multivariée</span>
     </div>
@@ -35,9 +37,10 @@
     <section class="block reveal">
       <h4>Objectif du projet</h4>
       <p>
-        Développer une interface web interactive pour rendre accessible l'exploration d'un jeu de données complexe
-        (statistiques criminelles par État américain). L'outil permet à un <strong>utilisateur non-expert</strong>
-        de visualiser les corrélations et les typologies d'États en quelques clics.
+        Construire une application R Shiny pour <strong>visualiser et comprendre notre jeu de données</strong> :
+        des statistiques criminelles par État américain. L'objectif n'était pas de prédire ni de décider, mais de
+        <strong>nous donner un outil d'exploration interactif</strong> pour examiner les variables, repérer les corrélations
+        entre types de délits et faire ressortir des typologies d'États au fil de l'analyse.
       </p>
       <p style="margin-top:14px">
         <a href="https://louisonguillot.shinyapps.io/apli/" target="_blank" class="btn btn-primary" style="font-size:.9rem;padding:10px 20px">🔗 Voir la démo interactive</a>
@@ -53,7 +56,7 @@
           <ul>
             <li>Projection des individus (États) et des variables sur les axes factoriels.</li>
             <li>Calcul automatique des contributions et des Cos² pour valider l'interprétation.</li>
-            <li>Clustering visuel des zones à risque similaire.</li>
+            <li>Regroupement visuel des États aux profils de criminalité proches.</li>
           </ul>
         </li>
       </ul>
@@ -69,17 +72,18 @@
     <section class="block reveal">
       <h4>Lecture de l'ACP</h4>
       <p>
-        Les deux premiers axes capturent près de <strong>75 % de l'inertie totale</strong>. Le premier axe structure
-        un gradient de violence globale ; le second distingue la nature des délits (agressions sexuelles et viols d'un côté,
-        agressions physiques et meurtres de l'autre). Cette restitution rend immédiatement lisible un jeu de données qui,
-        sous forme de tableau, resterait opaque.
+        Les deux premiers axes capturent près de <strong>75 % de l'inertie totale</strong> (Dim 1 : 59,5 % · Dim 2 : 15,1 %).
+        Le premier axe structure un gradient de violence globale ; le second distingue la nature des délits (agressions
+        sexuelles et viols d'un côté, agressions physiques et meurtres de l'autre). Cette restitution rend immédiatement
+        lisible la structure d'un jeu de données qui, sous forme de tableau, resterait opaque.
       </p>
     </section>
 
     <section class="block reveal">
       <div class="callout">
-        <p><strong>Compétence mise en avant —</strong> construire un <strong>outil de Business Intelligence complet</strong> :
-        du traitement statistique en back-end (R) jusqu'à la restitution visuelle en front-end (Shiny), pour faciliter la prise de décision.</p>
+        <p><strong>Compétence mise en avant —</strong> l'analyse exploratoire et la restitution visuelle :
+        du traitement statistique en back-end (R) jusqu'à une interface front-end (Shiny) qui rend
+        un jeu de données complexe <strong>compréhensible</strong>.</p>
       </div>
     </section>
 
@@ -88,7 +92,7 @@
 
   <footer class="footer">
     <div class="wrap footer-inner">
-      <small>© 2025 Louison Guillot · BUT Science des Données</small>
+      <small>© 2026 Louison Guillot · BUT Science des Données</small>
       <small>Contact : <a href="mailto:guillotlouison@gmail.com">guillotlouison@gmail.com</a></small>
     </div>
   </footer>

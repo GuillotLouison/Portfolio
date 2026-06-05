@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modélisation Ozone · Louison Guillot</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand">Louison <span>Guillot</span></div>
+      <div class="nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="stage-acdc.html">Automatisation</a>
+        <a href="sae-acp.html">Data Viz</a>
+        <a href="projet-ozone.html" class="active">Modélisation</a>
+        <a href="projet-scoring.html">Machine Learning</a>
+        <a href="projet-boosting.html">ML avancé</a>
+        <a href="objectifs.html">Objectifs</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="proj-hero wrap">
+    <span class="kicker reveal">Projet · Modélisation statistique</span>
+    <h1 class="reveal">Modéliser la concentration<br>maximale d'ozone</h1>
+    <p class="sub reveal">Régression en grande dimension : du piège du sur-apprentissage aux méthodes de réduction de dimension (sélection, PCR, PLS).</p>
+    <div class="tags reveal">
+      <span class="tag">R</span><span class="tag">Régression linéaire</span><span class="tag">ACP</span><span class="tag">PCR</span><span class="tag">PLS</span><span class="tag">Validation croisée</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="block reveal">
+      <h4>Le sujet</h4>
+      <p>
+        À partir d'un jeu de données météorologique (112 jours, 10 prédicteurs quantitatifs), l'objectif était de
+        <strong>modéliser la concentration maximale d'ozone</strong> (<code>maxO3</code>) et, surtout, de confronter
+        plusieurs approches de régression pour identifier le meilleur compromis entre <strong>pouvoir prédictif</strong>
+        et <strong>parcimonie</strong>.
+      </p>
+    </section>
+
+    <section class="block reveal">
+      <h4>Démarche exploratoire</h4>
+      <p>
+        Avant toute modélisation, une analyse descriptive complète a guidé les choix : histogrammes, boxplots,
+        et étude de la distribution de la réponse.
+      </p>
+      <ul>
+        <li>
+          <strong>Transformation de la réponse.</strong> <code>maxO3</code> est asymétrique à droite. Plutôt que de
+          conclure sur une seule impression graphique, deux tests ont été confrontés : Shapiro-Wilk (très puissant, rejette
+          la normalité même après log) et Kolmogorov-Smirnov (moins sensible, ne rejette plus après log, p = 0,13).
+          Cette nuance — <strong>quel test, et pourquoi</strong> — a permis de retenir la transformation log comme piste sérieuse,
+          à valider ensuite sur les résidus.
+        </li>
+        <li>
+          <strong>Multicolinéarité.</strong> Les prédicteurs forment trois blocs très corrélés en interne (températures,
+          nébulosités, vent) — logique, puisque c'est la même grandeur physique mesurée à plusieurs horaires. Ce constat
+          justifie à lui seul le recours à des méthodes de réduction de dimension.
+        </li>
+      </ul>
+    </section>
+
+    <section class="block reveal">
+      <h4>L'ACP comme synthèse</h4>
+      <p>
+        Une ACP sur les 10 prédicteurs, avec <code>maxO3</code> placée en <strong>variable supplémentaire</strong>
+        (projetée sans influencer les axes), résume <strong>73 % de la variance</strong> sur deux dimensions :
+      </p>
+      <ul>
+        <li><strong>Axe 1 (54,9 %)</strong> — gradient météo global : chaud / sec / dégagé ↔ frais / nuageux.</li>
+        <li><strong>Axe 2 (18,4 %)</strong> — chaleur stagnante ↔ fraîcheur ventilée (vent océanique).</li>
+      </ul>
+      <p>
+        <code>maxO3</code> est très bien représentée par l'axe 1 (cos² = 0,68), corrélation hautement significative
+        (p ≈ 10⁻²⁸) : la concentration d'ozone est avant tout dictée par ce gradient chaud/sec.
+      </p>
+    </section>
+
+    <section class="block reveal">
+      <h4>Le cœur du projet : la grande dimension</h4>
+      <p>
+        Pour illustrer concrètement le problème, on se met volontairement en difficulté : estimer le modèle complet
+        (11 paramètres) sur seulement <strong>10 observations</strong> — le cas <em>p + 1 &gt; n</em>.
+      </p>
+      <div class="steps" style="margin-top:24px">
+        <div class="step">
+          <span class="st">Le piège : R² = 1, mais un modèle vide de sens</span>
+          <small>Avec plus de paramètres que d'observations, le système admet une infinité de solutions. Le modèle passe exactement par les 10 points (résidus nuls), faisant s'effondrer tous les critères (R²aj indéfini, AIC/BIC → −∞, Cp non calculable).</small>
+        </div>
+        <div class="step">
+          <span class="st">La preuve par la prévision</span>
+          <small>Testé sur les jours mis de côté, ce modèle « parfait » donne un RMSE de ~100 µg/m³ — soit 3,5 × l'écart-type. Prédire avec lui revient à faire pire que de répondre la moyenne.</small>
+        </div>
+        <div class="step">
+          <span class="st">La solution : sélection forward</span>
+          <small>Backward et stepwise ne démarrent même pas (l'AIC du modèle complet vaut −∞). Seule la forward fonctionne : partant du modèle vide, elle aboutit à un modèle à 2 variables (T15 + maxO3v) dont le RMSE en prévision retombe à ~28,5 µg/m³.</small>
+        </div>
+        <div class="step">
+          <span class="st">Validation rigoureuse</span>
+          <small>Le modèle réduit est validé sur ses quatre hypothèses : linéarité (Harvey-Collier), homoscédasticité (Breusch-Pagan), indépendance (Durbin-Watson), normalité (KS) — toutes satisfaites, VIF ≈ 1,17 (aucune multicolinéarité résiduelle).</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="block reveal">
+      <h4>Régressions sur composantes : PCR vs PLS</h4>
+      <p>
+        Deux méthodes alternatives à la sélection de variables ont été mises en œuvre et <strong>comparées sur le même
+        découpage 70 / 30</strong>, pour qu'elles soient strictement comparables :
+      </p>
+      <ul>
+        <li><strong>PCR</strong> (régression sur composantes principales) — composantes construites sans tenir compte de la réponse. Choix par validation croisée : 6 composantes au minimum strict, mais <strong>3 composantes</strong> retenues par parcimonie (gain négligeable au-delà).</li>
+        <li><strong>PLS</strong> — composantes construites pour <strong>maximiser la covariance avec <code>maxO3</code></strong>, donc plus efficaces. Minimum dès <strong>2 composantes</strong>, confirmé par la validation croisée et l'échantillon test.</li>
+      </ul>
+      <p>Les deux convergent sur les mêmes variables dominantes (températures positives, nébulosité Ne9 négative), cohérentes avec le modèle réduit.</p>
+    </section>
+
+    <section class="block reveal">
+      <h4>Bilan comparatif</h4>
+      <div class="stats">
+        <div class="stat"><span class="n">~100</span><span class="l">RMSE modèle complet (p+1&gt;n)</span></div>
+        <div class="stat"><span class="n">16,2</span><span class="l">RMSEP — PLS (2 comp.)</span></div>
+        <div class="stat"><span class="n">16,2</span><span class="l">RMSEP — PCR (3 comp.)</span></div>
+      </div>
+      <div class="callout">
+        <p><strong>Conclusion —</strong> à performance équivalente (~16 µg/m³), la <strong>PLS</strong> offre le meilleur
+        compromis : aussi précise que la PCR mais plus parcimonieuse (2 composantes contre 3) et plus stable. La leçon centrale
+        du projet : en grande dimension, <strong>réduire la dimension n'est pas une option mais une nécessité</strong> — un petit
+        modèle bien choisi prédit toujours mieux qu'un gros modèle sur-ajusté.</p>
+      </div>
+    </section>
+
+    <section class="block reveal">
+      <p style="color:var(--ink-dim);font-size:.9rem">
+        SAÉ 6.EMS.01 — « Modélisation statistique pour le Big Data ». Document R Markdown.
+      </p>
+      <p style="margin-top:8px">
+        <a href="Ozone_projet.html" target="_blank" class="btn btn-ghost" style="font-size:.9rem;padding:10px 20px">Voir le rapport complet →</a>
+      </p>
+    </section>
+
+    <a href="index.html" class="backlink reveal">← Retour au portfolio</a>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <small>© 2026 Louison Guillot · BUT Science des Données</small>
+      <small>Réalisé en R (FactoMineR, pls, lmtest, car) sous R Markdown.</small>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

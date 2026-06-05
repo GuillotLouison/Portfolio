@@ -207,6 +207,8 @@ figcaption { color: var(--ink-dim); font-size: .85rem; margin-top: 12px; text-al
 .callout { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--cyan); border-radius: 12px; padding: 20px 24px; margin: 24px 0; }
 .callout p { margin: 0; }
 
+code { font-family: 'JetBrains Mono', monospace; font-size: .85em; background: var(--panel-2); border: 1px solid var(--line); border-radius: 5px; padding: 2px 6px; color: var(--cyan); }
+
 /* skills list (objectifs) */
 .skill-rows { display: grid; gap: 14px; }
 .skill-row { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px 22px; display: flex; gap: 16px; align-items: flex-start; }
