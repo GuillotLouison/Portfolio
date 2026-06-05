@@ -44,7 +44,7 @@
         11 caractéristiques physico-chimiques, une note de 3 à 8 à prédire).
       </p>
       <div class="callout">
-        <p>L'objectif n'était pas la performance record — le jeu est difficile et très déséquilibré — mais la
+        <p>L'objectif n'était pas la performance record le jeu est difficile et très déséquilibré mais la
         <strong>maîtrise de la démarche</strong> : chaque choix d'hyperparamètre devait être motivé, pas subi.</p>
       </div>
     </section>
@@ -70,7 +70,7 @@
     <section class="block reveal">
       <h4>Le cœur du projet : un réglage séquentiel et raisonné</h4>
       <p>
-        Plutôt qu'une grille géante sur tous les paramètres à la fois — coûteuse et illisible — j'ai réglé les
+        Plutôt qu'une grille géante sur tous les paramètres à la fois coûteuse et illisible j'ai réglé les
         hyperparamètres <strong>dans l'ordre, du plus structurant au plus fin</strong> :
       </p>
       <div class="steps" style="margin-top:24px">
@@ -88,7 +88,7 @@
         </div>
         <div class="step">
           <span class="st">4 · Évaluation honnête sur le test</span>
-          <small>L'échantillon de test n'est sorti qu'à la toute fin, jamais utilisé pour les réglages — la seule façon de ne pas se mentir sur la vraie performance.</small>
+          <small>L'échantillon de test n'est sorti qu'à la toute fin, jamais utilisé pour les réglages la seule façon de ne pas se mentir sur la vraie performance.</small>
         </div>
       </div>
     </section>
@@ -97,7 +97,7 @@
       <h4>Lecture critique des résultats</h4>
       <p>
         Le modèle calibré prédit très bien les notes centrales (5 et 6, les classes pleines) mais échoue sur les
-        extrêmes (3, 4, 8) — il n'a tout simplement pas assez d'exemples pour les apprendre. La matrice de confusion
+        extrêmes (3, 4, 8) il n'a tout simplement pas assez d'exemples pour les apprendre. La matrice de confusion
         rend ce diagnostic immédiat. <strong>La vraie limite est dans les données, pas dans le modèle.</strong>
       </p>
     </section>
@@ -107,8 +107,8 @@
       <p>
         J'ai croisé deux mesures d'importance qui ne disent pas la même chose : la <strong>MDI</strong> (réduction
         d'impureté, calculée sur le train) et la <strong>MDA</strong> (perte de performance par permutation, mesurée
-        sur le test — plus honnête). Les deux convergent : <strong>l'alcool domine très largement</strong>, suivi des
-        sulfates et de l'acidité volatile — cohérent avec l'œnologie. À l'inverse, le sucre résiduel, le pH ou la
+        sur le test plus honnête). Les deux convergent : <strong>l'alcool domine très largement</strong>, suivi des
+        sulfates et de l'acidité volatile cohérent avec l'œnologie. À l'inverse, le sucre résiduel, le pH ou la
         densité ne pèsent quasiment rien.
       </p>
     </section>
@@ -138,7 +138,7 @@
         <li>Le boosting <strong>sur-apprend vite</strong> sans régularisation ; le suivi arbre par arbre est l'outil le plus parlant pour le voir et choisir le bon nombre d'arbres.</li>
         <li><strong>L'ordre du réglage compte</strong> : un tuning séquentiel est plus interprétable et plus rapide qu'une grille aveugle.</li>
         <li>La parcimonie paie : <strong>couper les variables inutiles ne coûte rien</strong> en performance.</li>
-        <li>Face au déséquilibre, plusieurs leviers existent (rééquilibrage type <strong>SMOTE</strong> sur le seul train, pondération des classes, ou regroupement des notes) — le plus robuste ici serait de regrouper en « mauvais / moyen / bon ».</li>
+        <li>Face au déséquilibre, plusieurs leviers existent (rééquilibrage type <strong>SMOTE</strong> sur le seul train, pondération des classes, ou regroupement des notes) le plus robuste ici serait de regrouper en « mauvais / moyen / bon ».</li>
       </ul>
     </section>
 
