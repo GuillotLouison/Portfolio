@@ -40,7 +40,7 @@
         À la suite de mes cours sur les méthodes d'agrégation (bagging, forêts aléatoires, boosting), j'ai voulu
         vérifier que je savais <strong>dérouler un Gradient Boosting proprement, sans filet</strong> : partir d'un
         modèle naïf, diagnostiquer son sur-apprentissage, puis régler les hyperparamètres de façon raisonnée jusqu'à
-        un modèle final justifié. Le terrain : la qualité de vins rouges portugais « Vinho Verde » (~1 140 vins,
+        un modèle final justifié. Le terrain : la qualité de vins rouges portugais (~1 140 vins,
         11 caractéristiques physico-chimiques, une note de 3 à 8 à prédire).
       </p>
       <div class="callout">
@@ -61,7 +61,7 @@
         <div class="stat"><span class="n">60,3%</span><span class="l">Accuracy validation (gb1)</span></div>
       </div>
       <p>
-        En suivant l'erreur <strong>arbre par arbre</strong> (via <code>staged_predict</code>), on voit l'erreur de
+        En suivant l'erreur <strong>arbre par arbre</strong>, on voit l'erreur de
         validation se stabiliser puis <strong>remonter</strong> : ajouter des arbres finit par dégrader le modèle.
         C'est le signal qu'il faut régulariser.
       </p>
